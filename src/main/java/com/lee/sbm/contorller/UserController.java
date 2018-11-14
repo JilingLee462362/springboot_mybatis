@@ -2,6 +2,8 @@ package com.lee.sbm.contorller;
 
 
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lee.sbm.dao.UserInfoMapper;
 
 import com.lee.sbm.domain.UserInfo;
+import com.lee.sbm.service.UserServiceI;
 
 
 
@@ -23,14 +26,14 @@ import com.lee.sbm.domain.UserInfo;
 public class UserController {
 
     @Autowired
-    private UserInfoMapper userMapper;
+    private UserServiceI us;
 
     @RequestMapping("/find")
     @ResponseBody
-    public String toIndex(){
-    	UserInfo u = userMapper.selectByPrimaryKey("1");
-    	
-		return u.toString();
+    public String toIndex(Map<String, Object> map){
+    	UserInfo u = us.getUserInfoById("1");
+    	map.put("u",u.toString());
+		return "hello";
         
     }
 }
