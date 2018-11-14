@@ -1,0 +1,22 @@
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+#公共配置与profiles选择无关(typeAliasesPackageDao类UserInfoMapper.java的位置，mapperLocations映射文件UserInfoMapper.xml的位置)
+mybatis:
+  typeAliasesPackage: com.lee.sbm.dao   
+  mapperLocations: classpath:com/lee/sbm/dao/mapper/*.xml
+
+
+---
+
+#开发配置
+spring:
+  profiles: dev
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/ssm
+    username: root
+    password: 123123
+    driver-class-name: com.mysql.jdbc.Driver
